@@ -193,19 +193,22 @@ public class TRS{
     list[k].add("REPORT");
     expected[k] = "2,3,EAST";
     for(int i = 0; i <= k; i++){
-      testMOVES(list[i], expected[i]);
+      if(testMOVES(list[i], expected[i])){
+        System.out.println("test "+ i + " passed"); 
+      }else{
+        System.out.println("test "+ i + " failed"); 
+      }
       p.reset();
     }
   }
   
-  public void testMOVES(List<String> cmds, String expected){
+  public boolean testMOVES(List<String> cmds, String expected){
       process(cmds);
-      //System.out.println(">>>"+ (expected.equals(p.toString())));
+      return expected.equals(p.toString());
       //assertEquals(p.toString(), expected);
   }
   
   public static void main(String []args){
-    System.out.println("Hello w");
     TRS trs = new TRS();
     trs.testTRS();
   }
